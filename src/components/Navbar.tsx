@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
@@ -8,8 +7,15 @@ export default function Navbar() {
     i18n.changeLanguage(e.target.value);
   };
 
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <nav className="bg-[#111827] text-white shadow-lg">
+    <nav className="bg-[#111827] text-white shadow-lg fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
@@ -21,28 +27,28 @@ export default function Navbar() {
         {/* Links + Language */}
         <ul className="flex gap-6 items-center font-medium">
           <li>
-            <Link
-              to="/about"
+            <button
+              onClick={() => scrollToSection("about")}
               className="hover:text-yellow-400 transition-colors duration-200"
             >
               {t("about")}
-            </Link>
+            </button>
           </li>
           <li>
-            <Link
-              to="/projects"
+            <button
+              onClick={() => scrollToSection("projects")}
               className="hover:text-yellow-400 transition-colors duration-200"
             >
               {t("projects")}
-            </Link>
+            </button>
           </li>
           <li>
-            <Link
-              to="/contact"
+            <button
+              onClick={() => scrollToSection("contact")}
               className="hover:text-yellow-400 transition-colors duration-200"
             >
               {t("contact")}
-            </Link>
+            </button>
           </li>
           <li>
             <select
